@@ -1,0 +1,275 @@
+{
+  "name": "Prolog",
+  "scopeName": "source.prolog",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#quasi"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#directives"
+    },
+    {
+      "include": "#dcg"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#atoms"
+    },
+    {
+      "include": "#punctuation"
+    },
+    {
+      "include": "#builtins"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.prolog",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "name": "comment.line.percentage.prolog",
+          "match": "%.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.prolog",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.prolog",
+              "match": "\\\\(['\"\\\\nrtbf]|x[0-9A-Fa-f]+\\\\?)"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.prolog",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.prolog",
+              "match": "\\\\(['\"\\\\nrtbf]|x[0-9A-Fa-f]+\\\\?)"
+            }
+          ]
+        }
+      ]
+    },
+    "quasi": {
+      "patterns": [
+        {
+          "name": "string.quasi-quotation.prolog",
+          "begin": "\\{\\|",
+          "end": "\\|\\}",
+          "patterns": [
+            {
+              "name": "entity.name.function.quasi.tag.prolog",
+              "match": "(?<=\\{\\|)\\s*[_a-z][_a-zA-Z0-9:]*"
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.charcode.prolog",
+          "match": "0'(.|\\.)"
+        },
+        {
+          "name": "constant.numeric.hex.prolog",
+          "match": "0x[0-9A-Fa-f]+"
+        },
+        {
+          "name": "constant.numeric.bin.prolog",
+          "match": "0b[01]+"
+        },
+        {
+          "name": "constant.numeric.oct.prolog",
+          "match": "0o[0-7]+"
+        },
+        {
+          "name": "constant.numeric.float.prolog",
+          "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.int.prolog",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.parameter.anonymous.prolog",
+          "match": "\\b_\\b"
+        },
+        {
+          "name": "variable.parameter.named.prolog",
+          "match": "\\b_[_A-Za-z0-9]*\\b"
+        },
+        {
+          "name": "variable.parameter.named.prolog",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.control.directive.prolog",
+          "match": "(?<=^|[\\s\\(\\)])(?::-\\s*(?:module|use_module|include|ensure_loaded|dynamic|multifile|discontiguous|op|initialization|consult|set_prolog_flag|thread_local)\\b)"
+        },
+        {
+          "name": "keyword.control.query.prolog",
+          "match": "(?<=^|[\\s\\(\\)])\\?-"
+        }
+      ]
+    },
+    "dcg": {
+      "patterns": [
+        {
+          "name": "keyword.operator.prolog",
+          "match": "-->"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.prolog",
+          "match": "(?<![=:])=(?![.=])"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "=\\.\\."
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "\\bis\\b"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "=:="
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "=\\\\="
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "=="
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "\\\\=="
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "@<|@=<|@>|@>="
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "=<|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "\\\\+"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": ":-"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "\\?-"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "\\|"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": ","
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": ";"
+        },
+        {
+          "name": "keyword.operator.prolog",
+          "match": "(?<!\\d)\\.(?=\\s|$)"
+        }
+      ]
+    },
+    "atoms": {
+      "patterns": [
+        {
+          "name": "constant.language.atom.quoted.prolog",
+          "match": "'[^']*'"
+        },
+        {
+          "name": "constant.language.atom.unquoted.prolog",
+          "match": "\\b[a-z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.section.parens.begin.prolog",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.section.parens.end.prolog",
+          "match": "\\)"
+        },
+        {
+          "name": "punctuation.section.brackets.begin.prolog",
+          "match": "\\["
+        },
+        {
+          "name": "punctuation.section.brackets.end.prolog",
+          "match": "\\]"
+        },
+        {
+          "name": "punctuation.section.braces.begin.prolog",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.section.braces.end.prolog",
+          "match": "\\}"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.prolog",
+          "match": "\\b(?:true|false|fail|repeat|halt|write|read|nl|assert|retract|call|findall|bagof|setof|atom|integer|float|var|nonvar|number|functor|arg|compound|is_list|member|length|append|select|sort|reverse|maplist|forall|format|between|succ|sub_atom|atom_concat|atom_length|char_code|number_chars|number_codes|current_predicate|current_op|current_module|load_files|consult|listing|trace|notrace|debug|nodebug)\\b"
+        }
+      ]
+    }
+  }
+}

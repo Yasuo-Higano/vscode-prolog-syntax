@@ -1,0 +1,72 @@
+{
+  "name": "prolog-syntax",
+  "displayName": "Prolog Syntax Highlighter (SWI)",
+  "description": "SWI-Prolog syntax highlighting for VS Code (.pl auto-associated)",
+  "version": "1.0.0",
+  "publisher": "Yasuo-Higano",
+  "icon": "images/lisp.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yasuo-Higano/vscode-prolog-syntax"
+  },
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:prolog"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "prolog",
+        "aliases": [
+          "Prolog",
+          "prolog"
+        ],
+        "extensions": [
+          ".pl",
+          ".pro",
+          ".prolog"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "prolog",
+        "scopeName": "source.prolog",
+        "path": "./syntaxes/prolog.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[prolog]": {
+        "editor.tabSize": 2
+      }
+    }
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Prolog Settings",
+    "properties": {
+      "prolog.associatePl": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically associate .pl files with Prolog"
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "build": "tsc -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.92.0",
+    "typescript": "^5.4.0",
+    "@vscode/vsce": "^3.2.1"
+  }
+}
